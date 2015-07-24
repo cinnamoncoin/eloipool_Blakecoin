@@ -1,5 +1,13 @@
 Eloipool - Python Bitcoin pool server
-Copyright (C) 2011-2013  Luke Dashjr <luke-jr+eloipool@utopios.org>
+Copyright (C) 2011-2015  Luke Dashjr <luke-jr+eloipool@utopios.org>
+Portions written by Peter Leurs <kinlo@triplemining.com>
+
+Eloipool - Python Blakecoin pool server
+Copyright (c) 2013-2015 The Blakecoin developers
+Portions written by Carlos Pizarro <kr105@kr105.com>
+Portions written by BlueDragon747 
+
+for the MMP licence also see: https://github.com/BlueDragon747/eloipool_Blakecoin/blob/master/COPYING
 
 
 Copyright License
@@ -20,23 +28,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Dependencies
 ------------
-Python 3.2+			http://python.org
+Python 3.2+		http://python.org
+python-bitcoinrpc	https://github.com/BlueDragon747/python-bitcoinrpc
+python-base58		https://github.com/BlueDragon747/python-base58
+
+or
 python-bitcoinrpc	https://github.com/jgarzik/python-bitcoinrpc
-python-base58		https://gitorious.org/bitcoin/python-base58
+python-base58		https://gitorious.org/bitcoin/python-base58 *unavalible moved to gitlab
 
 Optional Dependencies
 ---------------------
-midstate			http://gitorious.org/midstate/midstate
-Psycopg2			http://initd.org/psycopg/
-PyMySQL				http://www.pymysql.org/
+db connector if using a database only need one! 
+PyMySQL			http://www.pymysql.org/
+CyMySQL			https://github.com/nakagami/CyMySQL *faster if using Cython 
+Psycopg2		http://initd.org/psycopg/
+
+not needed:
+midstate		http://gitorious.org/midstate/midstate *not needed for blake256
 
 
 Merged Mining
 -------------
 Eloipool supports merged mining using the setworkaux/gotwork RPC interface.
-A simple port of namecoin's merged-mine-proxy to this interface is available
-here:
-	https://gitorious.org/~Luke-Jr/bitcoin/luke-jr-bitcoin/blobs/namecoin_mmm/contrib/merged-mine-proxy
+A simple port of namecoin's merged-mine-proxy to this interface is included and modified to allow more AUX chains:
+
+	https://github.com/BlueDragon747/eloipool_Blakecoin/blob/master/merged-mine-proxy.py
+	
+Dependencies
+------------
+Python 2.7
+python-twisted
+	
 Please be advised that:
 - Eloipool does not provide any interface for longpolling aux chains.
 - Empty and longpoll merkle roots are generated only as-needed, and will NOT be
